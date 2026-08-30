@@ -18,14 +18,16 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
+
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Lock body scroll when the mobile menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
+
     return () => {
       document.body.style.overflow = '';
     };
@@ -39,11 +41,15 @@ export default function Navbar() {
           : 'bg-transparent'
       }`}
     >
-      <nav className="container-page flex h-20 items-center justify-between" aria-label="Primary">
+      <nav
+        className="container-page flex h-20 items-center justify-between"
+        aria-label="Primary"
+      >
         <a href="#home" className="flex items-center gap-2.5 group">
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-gold-400 transition-transform duration-300 group-hover:rotate-45">
             <WasilMark className="h-4 w-4" />
           </span>
+
           <span className="font-display text-lg tracking-wide text-navy-800">
             WASIL <span className="font-normal text-navy-500">ACADEMY</span>
           </span>
@@ -53,7 +59,7 @@ export default function Navbar() {
         <ul className="hidden items-center gap-8 lg:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
-              
+              <a
                 href={link.href}
                 className="text-sm font-medium text-navy-600 transition-colors hover:text-navy-900"
               >
@@ -63,7 +69,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        
+        <a
           href="#contact"
           className="hidden rounded-full bg-navy-800 px-5 py-2.5 text-sm font-semibold text-cream-50 shadow-sm transition-all duration-300 hover:bg-navy-700 hover:shadow-md lg:inline-block"
         >
@@ -91,7 +97,7 @@ export default function Navbar() {
         <ul className="container-page flex flex-col gap-1 pb-6 pt-2">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
-              
+              <a
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
                 className="block rounded-lg px-3 py-3 text-base font-medium text-navy-700 hover:bg-cream-200"
@@ -100,8 +106,9 @@ export default function Navbar() {
               </a>
             </li>
           ))}
+
           <li className="mt-2">
-            
+            <a
               href="#contact"
               onClick={() => setMenuOpen(false)}
               className="block rounded-full bg-navy-800 px-5 py-3 text-center text-sm font-semibold text-cream-50"
@@ -113,4 +120,4 @@ export default function Navbar() {
       </div>
     </header>
   );
-    }
+        }
